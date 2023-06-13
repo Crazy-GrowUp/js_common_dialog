@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="css/xphos.dialog.css"/>
+    </head>
+    <body>
+        
+        <button id="but1">普通弹框</button>
+        <button id="but2">带输入框的弹框</button>
+        <button id="but3">带输入框的文件选择弹框</button>
+        <button id="but4">进度条弹框</button>
+        <button id="but5">带组合选择的弹框</button>
+        <button id="but6">加载旋转框</button>
+        <script type="text/javascript" src="js/jquery-v2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/xphos.dialog.js"></script>
+        <script type="text/javascript">
+            $("#but1").click(()=>{
+                let notificationDialogID = showNotificationDialog({
+                    id:"id01" ,  
+                    closeButton:  -1, 
+                    titleText:  "Title",  
+                    context:  "I am the text.",  
+                    tipsText:  "I'm a tip", 
+                    buttons: [["but1",true],["but2",false],"but10"], 
+                    onButtonListening: function(data){
+                        console.log("data",data)
+                    } 
+                })
+                // 手动关闭
+                // closeDialog(notificationDialogID)
+            })
+            $("#but2").click(()=>{
+                let inputDialogID = showInputDialog({
+                    id: "id02", //You can customize the id to close the dialog conveniently.
+                    closeButton: 1, //number -1,0,1 Left, nothing, right
+                    titleText: "title", //string
+                    inputTitleText: "Your age:",  //string
+                    inputValue: "defaultValue", //defaultValue
+                    input:{
+                        type: "number", // default text ;color, date, datetime, datetime-local, email,image, month, number, password, range, tel, text, time, url, week
+                        placeholder:"Gray prompt in the input box", //string
+                        maxlength : 100, //number
+                        minlength: 10 //number
+                    },
+                    tipsText:"Prompt statement", //string Small red print
+                    buttons: [["but1",true],["but2",false],["but10"]],
+                    onButtonListening: function(data){
+                        console.log("data",data)
+                    },
+                    onInputChangeListening: function(data){
+                        console.log("onInputChangeListening-data",data)
+                    } //Input control changes the listening method.
+                })
+            })
+            $("#but3").click(()=>{
+                let fileInputDialogID = showFileInputDialog({
+                    id:"id03", //
+                    closeButton: 1, //-1,0,1
+                    titleText: "title", //string
+                    input :{
+                        placeholder:"Please upload zip and gz files.",
+                        accept:"appliction/x-zip-compressed",
+                        multiple:"multiple" //Multiple file upload
+                    },
+                    fileIcon: "img/fileimg.png",
+                    tipsText: "Small red text prompt",
+                    buttons:[["but1",true],["but2",false]],
+                    onButtonListening: function(data){
+                        console.log("id03-data",data)
+                    }
+                })
+            })
+            $("#but4").click(()=>{
+                let barValue = 0
+                let progressBarDialogID = showProgressBarDialog({
+                    id:"id04",
+                    titleText: "title",
+                    progressBar: {
+                        barColor:"#41D8D6", //string  "#FFF", "rgb(23,14,23)", "rgba(123,43,12,0.3)"
+                        barValue: barValue, //number 0-100
+                        barValueColor: "#FFF" //string
+                    },
+                    context:{
+                        text:"XXX 升级",
+                        color:"white", //string  "#FFF", "rgb(23,14,23)", "rgba(123,43,12,0.3)"
+                        fontSize: "18px", //string "16px"
+                    },
+                    tipsText: "Red tip" ,
+                    buttons:[["but1",true],["but2",false]], //
+                    onButtonListening: function(data){
+                        console.log("showProgressBarDialog-data",data)
+                    } 
+                })
+                let ss = setInterval(()=>{
+                    if(barValue<60){
+                        barValue++
+                        //更新进度条弹框,只更新值的变化
+                        updateProgressBarDialog(progressBarDialogID,{
+                            progressBar: {
+                                barValue: barValue
+                            }
+                        })
+                    }else{
+                        //升级失败
+                        updateProgressBarDialog(progressBarDialogID,{
+                            progressBar: {
+                                barColor:"red", //string  "#FFF", "rgb(23,14,23)", "rgba(123,43,12,0.3)"
+                                barValue: barValue, //number 0-100
+                                barValueColor: "#FFF" //string
+                            },
+                            context:{
+                                text:"升级失败",
+                                color:"red", //string  "#FFF", "rgb(23,14,23)", "rgba(123,43,12,0.3)"
+                                fontSize: "18px", //string "16px"
+                            }
+                        })
+                        clearInterval(ss)
+                    }
+                },100)
+            })
+            $("#but5").click(()=>{
+                let selectDialogID = showSelectDialog({
+                    id:"id05",
+                    closeButton: -1, //-1,0,1
+                    titleText: "选择旅行的内容",
+                    selectArray: [
+                        ["海边","compose1",true],["水上摩托艇","compose1",false],["帆板冲浪","compose1",false],["浮潜","compose1",false],
+                        ["草原","compose2",false],["骑马","compose2",false],["吃羊肉","compose2",false],["篝火晚会","compose2",false],
+                        ["大山","compose3",false],["看云海","compose3",false],["探险","compose3",false],["骑行","compose3",false]
+                    ],
+                    //Two-dimensional array, the option name is required, and if there is no combined name, it is the same as selecting a name. Select: false by default.
+                    //Only three formats are allowed:[["1.5GHz","compose1",true],...],[["1.5GHz"],...],["1.5GHz",...]
+                    //Prohibit incoming:[["1.5GHz",true],...]
+                    tipsText: "Red tip",
+                    buttons: [["确定",true],["取消",false]],
+                    onButtonListening: function(data){
+                        console.log("showSelectDialog-data",data)
+                        //也可以通过ID来直接获取当前的选择
+                        console.log("getSelectDialogValue(selectDialogID):",getSelectDialogValue(selectDialogID))
+                    }
+                })
+            })
+            $("#but6").click(()=>{
+                let loadingDialogID = showLoadingDialog({
+                    id:"id06",
+                    loadingIcon:"img/loading2.png",//Picture address default:/static/images/loading2.png
+                    tipsText: "Loading in...",
+                })
+                setTimeout(()=>{
+                    console.log("关闭旋转加载框")
+                    closeDialog(loadingDialogID)
+                },5000)
+            })
+        </script>
+    </body>
+</html>

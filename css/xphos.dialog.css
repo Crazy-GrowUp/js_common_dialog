@@ -1,0 +1,183 @@
+.xphosDialogMaskLayer{
+    z-index: 2000;
+    display: block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    outline: 0;
+    background: rgba(0,0,0,0.5);
+}
+.xphosDialogBackground{
+    width: 508px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: #325B94;
+    color: #ffffff;
+    padding:10px 10px 20px 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    transform:  translate(-50%,-50%);
+    z-index: 2000;
+    text-align: center;
+}
+.xphosLoadingDialogBackground{
+    width: 200px;
+    height: 230px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: rgba(66,117,188,.9);
+    color: #ffffff;
+    padding:10px 10px 20px 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    transform:  translate(-50%,-50%);
+    z-index: 2000;
+    text-align: center;
+}
+.xphosCloseDialogA{
+    position: absolute;
+    cursor: pointer;
+    /* z-index: 2000; */
+    /* float: right; */
+    font-size: 0;
+    width: 30px;
+    height: 30px;
+    top: 10px;
+    border: none;
+    background: url(../img/close.png)no-repeat center;
+}
+.xphosCloseDialogALeft{
+    left: 2%;
+}
+.xphosCloseDialogARight{
+    left: 91%;
+}
+.xphosTitleText{
+    font-size: 18px;
+    margin-bottom: 8px;
+    margin-top: 17px;
+    display: inline-block;
+}
+.xphosContext{
+    font-size: 16px;
+    margin-bottom: 8px;
+    margin-top: 17px;
+    display: inline-block;
+}
+.xphosTipsText{
+    color: #FF5E5E;
+    font-size: 10px;
+}
+.xphosButton{
+    height: 34px;
+    width: 135px;
+    line-height: 34px;
+    color: #ffffff;
+    margin-right: 10px;
+    margin-top: 10px;
+    display: inline-block;
+    text-align: center;
+    background: url(../img/topBgno.png) no-repeat top left;
+    background-size: 100% 100%;
+    outline: none;
+}
+.xphosInputDialog{
+    width: 200px;
+    background: #ffffff;
+    height: 32px;
+    padding-left: 10px;
+    margin-top: 7px
+}
+.xphosFileInputTextDialog{
+    width: 330px;
+    margin-right: 8px;
+    background: #ffffff;
+    line-height: 32px;
+    padding-left: 10px;
+    margin-top: 15px;
+}
+.xphosFormDialog{
+    position: relative;
+    width: 40px;
+    height: 36px;
+    top: -23px;
+    display: inline-table;
+    margin-top: 15px;
+}
+.xphosFileInputDialog{
+    width: 70px;
+    height: 40px;
+    position: absolute;
+    overflow: hidden;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.xphosTotalProgressBar{
+    width: 468px;
+    text-align: center;
+    margin-right: 0;
+    height: 32px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin-bottom: 6px;
+    display: inline-block;
+}
+.xphosUseProgressBar{
+    width: 0;
+    height: 32px;
+    line-height: 32px;
+    background-color: #41D8D6;
+    text-align: center;
+    color: white;
+    border-radius: 5px;
+}
+.xphosSelect{
+    display: inline-block;
+    cursor: default;
+    padding-left: 22px;
+    width: 100px;
+    height: 20px;
+    line-height: 20px;
+    background: url(../img/checkd.png) no-repeat 0 0;
+    background-size: 20px;
+    margin-top: 20px;
+}
+.xphosSelectOn{
+    background: url(../img/checkdon.png) no-repeat 0 0;
+    background-size: 20px;
+}
+.xphosTitleDialogDiv{
+    background: rgba(66,117,188,.9);
+    margin: -10px -10px 0px -10px;
+    border-radius: 5px 5px 0 0;
+}
+.loadingDialogDiv{
+    width: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:  translate(-50%,-50%);
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.xphosLoadingImg{
+    width: 100px;
+    height: 100px;
+    animation: rotate 3s linear infinite;
+    border-radius: 50%;
+    -webkit-user-drag: none;
+}
+ @keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
